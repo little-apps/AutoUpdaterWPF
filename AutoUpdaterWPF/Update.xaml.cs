@@ -84,7 +84,7 @@ namespace AutoUpdaterWPF
             }
             else
             {
-                var downloadDialog = new global::AutoUpdaterWPF.DownloadUpdate(AutoUpdater.DownloadUrl);
+                var downloadDialog = new DownloadUpdate(AutoUpdater.DownloadUrl);
 
                 try
                 {
@@ -100,7 +100,7 @@ namespace AutoUpdaterWPF
         {
             if (AutoUpdater.LetUserSelectRemindLater)
             {
-                var remindLaterForm = new global::AutoUpdaterWPF.RemindLater();
+                var remindLaterForm = new RemindLater();
 
                 var dialogResult = remindLaterForm.ShowDialog();
 
@@ -112,7 +112,7 @@ namespace AutoUpdaterWPF
                         break;
 
                     case false:
-                        var downloadDialog = new global::AutoUpdaterWPF.DownloadUpdate(AutoUpdater.DownloadUrl);
+                        var downloadDialog = new DownloadUpdate(AutoUpdater.DownloadUrl);
 
                         try
                         {
