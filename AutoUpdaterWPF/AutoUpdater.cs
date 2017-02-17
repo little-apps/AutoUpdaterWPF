@@ -89,9 +89,9 @@ namespace AutoUpdaterWPF
         ///     Start checking for new version of application and display dialog to the user if update is available.
         /// </summary>
         /// <param name="forceUpdate">If true, ignores remind later and checks for update right away</param>
-        public static void Start(bool forceUpdate = false)
+        public static Task Start(bool forceUpdate = false)
         {
-            Start(AppCastUrl, forceUpdate);
+            return Start(AppCastUrl, forceUpdate);
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace AutoUpdaterWPF
         /// </summary>
         /// <param name="appCast">URL of the xml file that contains information about latest version of the application.</param>
         /// <param name="forceUpdate">If true, ignores remind later and checks for update right away</param>
-        public static void Start(string appCast, bool forceUpdate = false)
+        public static Task Start(string appCast, bool forceUpdate = false)
         {
             if (Running)
                 throw new AlreadyRunningException();
@@ -108,7 +108,7 @@ namespace AutoUpdaterWPF
             ForceCheck = forceUpdate;
             Running = true;
 
-            CheckForUpdate().ContinueWith(task => Running = false);
+            return CheckForUpdate().ContinueWith(task => Running = false);
         }
 
         private static async Task CheckForUpdate()
