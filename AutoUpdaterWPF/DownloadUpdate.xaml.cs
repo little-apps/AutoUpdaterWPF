@@ -127,9 +127,7 @@ namespace AutoUpdaterWPF
                     fileName = contentDisposition.Substring(index + lookForFileName.Length);
 
                 if (fileName.StartsWith("\"") && fileName.EndsWith("\""))
-                {
                     fileName = fileName.Substring(1, fileName.Length - 2);
-                }
             }
 
             if (!string.IsNullOrEmpty(fileName))
