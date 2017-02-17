@@ -19,7 +19,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             RenderTransformOrigin="0.5,0.5"
-            Source="/Little_System_Cleaner;component/Resources/update.png" />
+            Source="pack://siteoforigin:,,,/Resources/update.png" />
         <TextBlock
             x:Name="TextBlockUpdate"
             Margin="91,14,0,0"
