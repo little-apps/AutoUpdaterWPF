@@ -108,7 +108,7 @@ namespace AutoUpdaterWPF
             ForceCheck = forceUpdate;
             Running = true;
 
-            return CheckForUpdate().ContinueWith(task => Running = false);
+            return CheckForUpdate();
         }
 
         private static async Task CheckForUpdate()
@@ -182,6 +182,8 @@ namespace AutoUpdaterWPF
             }
             catch (Exception ex)
             {
+                Running = false;
+
                 if (MainDispatcher == null)
                     return;
 
@@ -291,6 +293,8 @@ namespace AutoUpdaterWPF
             {
                 UpdateCheckFinished?.Invoke(false);
             }
+
+            Running = false;
         }
 
         private static void ShowUI()

@@ -10,11 +10,12 @@ namespace AutoUpdaterWPF.Exceptions
     {
         protected BaseException(string message) : base(message)
         {
-            
+            AutoUpdater.Running = false;
         }
 
         protected BaseException(string message, Exception innerException) : base(message, innerException)
         {
+            AutoUpdater.Running = false;
         }
     }
 }
