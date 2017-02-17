@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutoUpdaterWPF.Exceptions
 {
-    class ConnectException : BaseException
+    public class ConnectException : BaseException
     {
         public ConnectException(Exception innerException)
             : base($"The following error occurred trying to connect to update server: {innerException.Message}", innerException)

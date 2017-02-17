@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutoUpdaterWPF.Exceptions
 {
-    class SaveFileException : BaseException
+    public class SaveFileException : BaseException
     {
         public SaveFileException(Exception innerException)
             : base(
