@@ -15,6 +15,7 @@ namespace AutoUpdaterWPF
     /// </summary>
     internal partial class DownloadUpdate
     {
+        private const uint MaxRedirects = 20;
         private readonly string _downloadUrl;
 
         private string _tempPath;
@@ -40,7 +41,7 @@ namespace AutoUpdaterWPF
             }
             else
             {
-                fileName = GetFileName(_downloadUrl);
+                fileName = GetFileName(_downloadUrl, 0);
 
                 if (string.IsNullOrEmpty(fileName))
                 {
@@ -86,8 +87,11 @@ namespace AutoUpdaterWPF
             }
         }
 
-        private static string GetFileName(string url)
+        private static string GetFileName(string url, uint count)
         {
+            if (count == MaxRedirects)
+                return null;
+
             var fileName = string.Empty;
 
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
@@ -113,7 +117,7 @@ namespace AutoUpdaterWPF
                 if (httpWebResponse.Headers["Location"] != null)
                 {
                     var location = httpWebResponse.Headers["Location"];
-                    fileName = GetFileName(location);
+                    fileName = GetFileName(location, ++count);
                     return fileName;
                 }
             }
